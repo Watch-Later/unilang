@@ -722,6 +722,19 @@ struct EnvironmentSwitcher
 		if(SavedPtr)
 			ContextRef.get().SwitchEnvironmentUnchecked(std::move(SavedPtr));
 	}
+
+	shared_ptr<Environment>
+	Switch() const ynothrowv
+	{
+		return SavedPtr ? ContextRef.get().SwitchEnvironmentUnchecked(
+			std::move(SavedPtr)) : nullptr;
+	}
+
+	friend void
+	dismiss(EnvironmentSwitcher& s) ynothrow
+	{
+		s.SavedPtr.reset();
+	}
 };
 
 
