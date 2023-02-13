@@ -595,7 +595,7 @@ IsPair(const TermNode& nd) noexcept
 }
 
 YB_ATTR_nodiscard YB_PURE inline bool
-IsSingleElementList(const TermNode& term) ynothrow
+IsSingleElementList(const TermNode& term) noexcept
 {
 	return IsList(term) && term.size() == 1;
 }
@@ -713,7 +713,7 @@ YB_NONNULL(3) inline void
 AssertMatchedAllocators(const TermNode::allocator_type& a, const TermNode& nd,
 	const char* msg = "Allocators mismatch to the term node.") noexcept
 {
-	AssertMatchedAllocators(a, nd.GetContainer(), msg);
+	Unilang::AssertMatchedAllocators(a, nd.GetContainer(), msg);
 }
 YB_NONNULL(3) inline void
 AssertMatchedAllocators(const TermNode& x, const TermNode& y,
